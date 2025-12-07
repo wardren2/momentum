@@ -1,0 +1,249 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial,
+		sans-serif;
+	color: white;
+	min-height: 100vh;
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+	display: flex;
+	flex-direction: column;
+	position: relative;
+}
+
+body::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(
+		to bottom,
+		rgba(0, 0, 0, 0.3),
+		rgba(0, 0, 0, 0.5)
+	);
+	pointer-events: none;
+}
+
+.hidden {
+	display: none;
+}
+
+/* Header - Weather & City */
+#weather {
+	position: absolute;
+	top: 2rem;
+	right: 2rem;
+	text-align: right;
+	font-size: 0.875rem;
+	letter-spacing: 0.5px;
+	display: flex;
+	flex-direction: column;
+	gap: 0.25rem;
+	z-index: 10;
+}
+
+#weather-icon img {
+	width: 40px;
+	height: 40px;
+	filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+#city {
+	font-size: 0.75rem;
+	opacity: 0.8;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+/* Center Content */
+main {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 2rem;
+	z-index: 1;
+	text-align: center;
+}
+
+#clock {
+	font-size: clamp(4rem, 12vw, 8rem);
+	font-weight: 200;
+	letter-spacing: -0.02em;
+	margin-bottom: 1rem;
+	text-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+#greeting {
+	font-size: clamp(1.5rem, 4vw, 2.5rem);
+	font-weight: 300;
+	margin-bottom: 3rem;
+	opacity: 0.95;
+}
+
+/* Forms */
+form {
+	width: 100%;
+	max-width: 400px;
+}
+
+input[type='text'] {
+	width: 100%;
+	background: rgba(255, 255, 255, 0.1);
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	border-radius: 4px;
+	padding: 0.875rem 1.25rem;
+	font-size: 1rem;
+	color: white;
+	transition: all 0.2s;
+	backdrop-filter: blur(10px);
+}
+
+input[type='text']::placeholder {
+	color: rgba(255, 255, 255, 0.5);
+}
+
+input[type='text']:focus {
+	outline: none;
+	background: rgba(255, 255, 255, 0.15);
+	border-color: rgba(255, 255, 255, 0.4);
+}
+
+input[type='submit'] {
+	margin-top: 1rem;
+	padding: 0.875rem 2rem;
+	background: rgba(255, 255, 255, 0.2);
+	border: 1px solid rgba(255, 255, 255, 0.3);
+	border-radius: 4px;
+	color: white;
+	font-size: 0.875rem;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	cursor: pointer;
+	transition: all 0.2s;
+	backdrop-filter: blur(10px);
+}
+
+input[type='submit']:hover {
+	background: rgba(255, 255, 255, 0.3);
+}
+
+/* Todo List */
+#todo-list {
+	list-style: none;
+	margin-top: 2rem;
+	width: 100%;
+	max-width: 500px;
+}
+
+#todo-list li {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0.75rem 1rem;
+	margin-bottom: 0.5rem;
+	background: rgba(255, 255, 255, 0.08);
+	border-radius: 4px;
+	backdrop-filter: blur(10px);
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	position: relative;
+	transition: opacity 0.3s;
+}
+
+#todo-list li.completed {
+	opacity: 0;
+}
+
+#todo-list li::before {
+	content: '';
+	position: absolute;
+	left: 1rem;
+	right: 3rem;
+	top: 50%;
+	height: 1px;
+	background: white;
+	transform: scaleX(0);
+	transform-origin: left;
+	transition: transform 0.3s ease-out;
+	z-index: 1;
+}
+
+#todo-list li.strike::before {
+	transform: scaleX(1);
+}
+
+#todo-list span {
+	flex: 1;
+}
+
+#todo-list button {
+	background: none;
+	border: none;
+	cursor: pointer;
+	font-size: 0.75rem;
+	opacity: 0.5;
+	transition: opacity 0.2s;
+	padding: 0.25rem 0.5rem;
+	letter-spacing: 0.5px;
+	text-transform: uppercase;
+	position: relative;
+	z-index: 2;
+}
+
+#todo-list button:hover {
+	opacity: 1;
+}
+
+/* Quote - Bottom */
+#quote {
+	position: absolute;
+	bottom: 2rem;
+	left: 2rem;
+	right: 2rem;
+	max-width: 600px;
+	font-size: 0.875rem;
+	line-height: 1.6;
+	opacity: 0.9;
+	z-index: 10;
+}
+
+#quote span:first-child {
+	display: block;
+	font-style: italic;
+	margin-bottom: 0.5rem;
+}
+
+#quote span:last-child {
+	display: block;
+	font-size: 0.75rem;
+	opacity: 0.7;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+#quote span:last-child::before {
+	content: '— ';
+}
+
+@media (max-width: 768px) {
+	#weather {
+		top: 1rem;
+		right: 1rem;
+	}
+
+	#quote {
+		bottom: 1rem;
+		left: 1rem;
+		right: 1rem;
+	}
+
+	#clock {
+		font-size: clamp(3rem, 15vw, 6rem);
+	}
+}
