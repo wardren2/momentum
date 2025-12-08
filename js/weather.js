@@ -16,7 +16,7 @@ function onGeoOk(position) {
       const icon = document.querySelector("#weather-icon");
 
       city.innerText = data.name;
-      weather.innerText = `${data.weather[0].main} / ${data.main.temp}`;    // 날씨이름/온도
+      weather.innerText = `${data.weather[0].main} / ${data.main.temp}℃`;    // 날씨이름/온도
       icon.innerHTML = `<img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt="${data.weather[0].description}">`;
     });
 }
@@ -24,5 +24,6 @@ function onGeoOk(position) {
 function onGeoError() {
   alert("Can't find you. No weather for you.");
 }
+
 
 navigator.geolocation.getCurrentPosition(onGeoOk, onGeoError);
